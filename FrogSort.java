@@ -20,6 +20,7 @@ class FrogSort {
                 f[i][1] = Integer.parseInt(fLsa[i]);
                 f[i][2] = i+1;
             }
+            //f = quickSort(f, 0, n-1);
             f = sort(f);
             int hits = 0;
             for (int i=0; i<n; i++){
@@ -51,6 +52,32 @@ class FrogSort {
                 }
             }
         }
+        return a;
+    }
+
+    public static int[][] quickSort(int[][] a, int first, int last){
+        int piv = (a[first][0] + a[last][0])/2;
+        int i = first;
+        int j = last;
+
+        while (i<j){
+            while (a[i][0]<piv) i++;
+            while (a[j][0]>piv) j--;
+            if(i<=j){
+                int[] x = a[i];
+                a[i] = a[j];
+                a[j] = x;
+                i++;
+                j--;
+            }
+        }
+        if(first<j){
+            a = quickSort(a, first, j);
+        }
+        if(last>i){
+            a = quickSort(a, i, last);
+        }
+
         return a;
     }
 }
